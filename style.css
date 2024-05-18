@@ -1,0 +1,56 @@
+* {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 10em;
+	color: #999;
+	background-color: #222;
+}
+
+header {
+	padding: 0 4px;
+}
+
+a {
+	text-decoration: none;
+	color: #aab;
+	font-size: 9px;
+	display: inline-block;
+}
+
+a:hover {
+	color: #ccd;
+}
+
+#links {
+	padding: 2px 16px;
+	font-size: 9px;
+}
+
+footer {
+	font-size: 9px;
+	padding: 0 4px;
+}
+
+h1 {
+	font-size: 12px;
+	margin: 0px;
+	padding: 0px;
+	color: #f5f5f5;
+}
+
+p {
+	padding: 2px;
+	margin: 0px;
+}
+
+#sizes {
+	padding: 2px 0 0 0;
+}
+
+#canvas {
+	padding: 0;
+}

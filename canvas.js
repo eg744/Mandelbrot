@@ -37,7 +37,7 @@ function setCanvasStartParams() {
 function drawPixel(x, y, c) {
 	if (lastColor !== c) {
 		lastColor = c;
-		ctx.fillStyle = color[c];
+		ctx.fillStyle = colors[c];
 	}
 	ctx.fillRect(x, y, 1, 1);
 }
@@ -47,4 +47,18 @@ function drawLine(x0, y0, x1, y1) {
 	ctx.moveTo(x0, y0);
 	ctx.lineTo(x1, y1);
 	ctx.stroke();
+}
+
+function convertToPNG(canvasElement, outputElement) {
+	let canvas = document.getElementById(canvasElement);
+	let url = canvas.toDataURL();
+
+	let iframe =
+		'<iframe src="' +
+		url +
+		'" style="border: 0; padding: 0; margin: 0; width:100% height:100%;" allowfullscreen></iframe>';
+	let x = window.open();
+	x.document.open();
+	x.document.write(iframe);
+	x.document.close();
 }
