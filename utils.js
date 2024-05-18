@@ -25,3 +25,23 @@ function randomNumberSignedWithMinimum(n, nMin) {
 	let number = (Math.random() * 2 - 1) * (n - nMin);
 	return number >= 0 ? number + nMin : number - nMin;
 }
+
+// Float between 0, n
+function randomfloat(n) {
+	return Math.random() * n;
+}
+
+// Float between n1, n2
+function randomFloatRange(n1, n2) {
+	return Math.random() * (n2 - n1) + n1;
+}
+
+// Time in milliseconds
+function milliseconds() {
+	return new Date().getTime();
+}
+
+// True if number is between start and finish, not inclusive
+function isInRange(number, start, finish) {
+	return number >= start && number < finish;
+}
