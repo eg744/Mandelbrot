@@ -23,6 +23,19 @@
 // 	ctx.stroke();
 // });
 
+import {
+	boolToInt,
+	randomNumber,
+	randomRange,
+	randomfloat,
+	randomFloatRange,
+	randomNumberSignedNonZero,
+	randomNumberSignedWithMinimum,
+	milliseconds,
+	isInRange,
+} from './script.js';
+////////
+
 // ==Globals==
 let MAX_CONTROL_COLORS = 5;
 let MAX_COLORS = 512;
@@ -127,10 +140,10 @@ function computeMandelbrot() {
 	mandelbrotPixels = mandelbrotImage.data;
 
 	let start = new Date().getTime();
-	for (let sy = 0; sy < iCanvasHeight; sy++) {
-		for (let sx = 0; sx < iCanvasWidth; sx++) {
-			let p = pmin + xstep * sx;
-			let q = qmax - ystep * sy;
+	for (let sy = 0; sy < canvasHeight; sy++) {
+		for (let sx = 0; sx < canvasWidth; sx++) {
+			let p = pMin + xStep * sx;
+			let q = qMax - yStep * sy;
 			let k = 0;
 			let x0 = 0.0;
 			let y0 = 0.0;
@@ -148,7 +161,7 @@ function computeMandelbrot() {
 				k = 0;
 			}
 
-			// draw the pixel
+			// draw pixel
 			drawPixel(sx, sy, k);
 		}
 	}
@@ -157,4 +170,29 @@ function computeMandelbrot() {
 
 	let elapsed = new Date().getTime() - start;
 	reportCoordsAndTiming(elapsed + ' ms');
+}
+
+// ==Mouse, touch event==
+
+let mouseDown = false;
+let mbX;
+let mbY;
+
+function canvasDown(x, y) {
+	mouseDown = true;
+	mbX = x;
+	mbY = y;
+
+	backImage = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+}
+
+function canvasMove(currentX, currentY) {
+	if (mouseDown) {
+		let newY =
+			mbY +
+			(boolToInt(currentY > mbY) * 2 - 1) *
+				Math.round(
+					(canvasHeight * Math.abs(currentX - mbX)) / canvasWidth
+				);
+	}
 }
