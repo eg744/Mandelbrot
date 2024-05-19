@@ -110,3 +110,51 @@ function computeColors() {
 		colors[i] = colors[i - 256];
 	}
 }
+
+function computeMandelbrot() {
+	const KMAX = 256;
+
+	let xStep = (pMax - pMin) / canvasWidth;
+	let yStep = (qMax - qMin) / canvasHeight;
+
+	// Speed
+	let x = 0.0;
+	let y = 0.0;
+	let r = 1.0;
+
+	// Back image and pointer to pixels array
+	mandelbrotImage = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
+	mandelbrotPixels = mandelbrotImage.data;
+
+	let start = new Date().getTime();
+	for (let sy = 0; sy < iCanvasHeight; sy++) {
+		for (let sx = 0; sx < iCanvasWidth; sx++) {
+			let p = pmin + xstep * sx;
+			let q = qmax - ystep * sy;
+			let k = 0;
+			let x0 = 0.0;
+			let y0 = 0.0;
+
+			do {
+				x = x0 * x0 - y0 * y0 + p;
+				y = 2 * x0 * y0 + q;
+				x0 = x;
+				y0 = y;
+				r = x * x + y * y;
+				k++;
+			} while (r <= ITERATION_LIMIT && k < KMAX);
+
+			if (k >= KMAX) {
+				k = 0;
+			}
+
+			// draw the pixel
+			drawPixel(sx, sy, k);
+		}
+	}
+
+	ctx.putImageData(mandelImage, 0, 0);
+
+	let elapsed = new Date().getTime() - start;
+	reportCoordsAndTiming(elapsed + ' ms');
+}
