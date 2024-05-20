@@ -33,7 +33,7 @@ import {
 	randomNumberSignedWithMinimum,
 	milliseconds,
 	isInRange,
-} from './script.js';
+} from './modules/utils.js';
 ////////
 
 // ==Globals==
