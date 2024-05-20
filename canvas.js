@@ -1,3 +1,14 @@
+import {
+	boolToInt,
+	randomNumber,
+	randomRange,
+	randomfloat,
+	randomFloatRange,
+	randomNumberSignedNonZero,
+	randomNumberSignedWithMinimum,
+	milliseconds,
+	isInRange,
+} from './script.js';
 // Canvas settings, setup
 
 let ctx;
