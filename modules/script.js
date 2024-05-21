@@ -33,7 +33,7 @@ import {
 	randomNumberSignedWithMinimum,
 	milliseconds,
 	isInRange,
-} from './modules/utils.js';
+} from './utils.js';
 ////////
 
 // ==Globals==
@@ -124,7 +124,7 @@ function computeColors() {
 	}
 }
 
-function computeMandelbrot() {
+export function computeMandelbrot() {
 	const KMAX = 256;
 
 	let xStep = (pMax - pMin) / canvasWidth;
@@ -194,5 +194,99 @@ function canvasMove(currentX, currentY) {
 				Math.round(
 					(canvasHeight * Math.abs(currentX - mbX)) / canvasWidth
 				);
+
+		ctx.putImageData(backImage, 0, 0);
+		ctx.strokeStyle = 'rgb(170,255,65)';
+		ctx.strokeRect(mbX, mbY, currentX - mbX, newY - mbY);
 	}
+}
+
+function canvasUp(currentX, currentY) {
+	if (mouseDown) {
+		let newX = currentX;
+		let newY =
+			mbY +
+			(boolToInt(currentY > mbY) * 2 - 1) *
+				Math.round(
+					(iCanvasHeight * Math.abs(currX - mbX)) / iCanvasWidth
+				);
+		if (newX < mbX) {
+			let hx = newX;
+			newX = mbX;
+			mbX = hx;
+		}
+		if (newY < mbY) {
+			let hy = newY;
+			newY = mbY;
+			mbY = hy;
+		}
+		console.log(mbX + ', ' + mbY + ' to ' + newX + ', ' + newY);
+
+		// only compute if the size of the square is more than 3x3 pixels
+		if (Math.abs(newX - mbX) > 3 && Math.abs(newY - mbY) > 3) {
+			let pw = pMax - pMin;
+			pMin = pMin + (mbX * pw) / iCanvasWidth;
+			pMax = pMax - ((iCanvasWidth - newX) * pw) / iCanvasWidth;
+			let qw = qMax - qMin;
+			qMin = qMin + ((iCanvasHeight - newY) * qw) / iCanvasHeight;
+			qMax = qMax - (mbY * qw) / iCanvasHeight;
+
+			computeMandel();
+		}
+	}
+	mouseDown = false;
+}
+
+function onMouseDown(e) {
+	canvasDown(
+		e.offsetX || e.clientX - iCanvasX,
+		e.offsetY || e.clientY - iCanvasY
+	);
+}
+
+function onMouseMove(e) {
+	canvasMove(
+		e.offsetX || e.clientX - iCanvasX,
+		e.offsetY || e.clientY - iCanvasY
+	);
+}
+
+function onMouseUp(e) {
+	canvasUp(
+		e.offsetX || e.clientX - iCanvasX,
+		e.offsetY || e.clientY - iCanvasY
+	);
+}
+
+function onTouchStart(e) {
+	e.preventDefault();
+	canvasDown(
+		e.targetTouches[0].pageX - iCanvasX,
+		e.targetTouches[0].pageY - iCanvasY
+	);
+}
+
+function onTouchMove(e) {
+	e.preventDefault();
+	canvasMove(
+		e.targetTouches[0].pageX - iCanvasX,
+		e.targetTouches[0].pageY - iCanvasY
+	);
+}
+
+function onTouchEnd(e) {
+	canvasUp(
+		e.changedTouches[0].pageX - iCanvasX,
+		e.changedTouches[0].pageY - iCanvasY
+	);
+}
+
+export function initMandelbrot(canvasElement, width, height) {
+	initCanvas(canvasElement, width, height);
+
+	resetMaldelbrot(width, height);
+	resetControlColors();
+	computeColors();
+
+	// canvas.onmousedown = onMouseDown;
 }
