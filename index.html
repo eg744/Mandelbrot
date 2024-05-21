@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <script type="module" src="./modules/script.js"></script>
+    <script type="module" src="script.js"></script>
     <script type="module" src="canvas.js"></script>
     <script type="module" src="./modules/utils.js"></script>
     <script type="module">
@@ -33,30 +33,30 @@
         //         document.getElementById("preset_" + i).className = "";
         //     }
         // }
+        ////////////////////
+        // import {
+        //     initMandelbrot
+        // } from './modules/script.js'
+        // window.addEventListener('load', (e) => {
+        //     if (e) {
+        //         // resetPresetStyles();
+        //         e.className = "selected";
+        //     }
+        //     initMandelbrot("canvas", width, height);
+        //     // resetMandel(w, h);
+        //     computeMandelbrot();
+        // })
 
-        import {
-            initMandelbrot
-        } from './modules/script.js'
-        window.addEventListener('load', (e) => {
-            if (e) {
-                // resetPresetStyles();
-                e.className = "selected";
-            }
-            initMandelbrot("canvas", width, height);
-            // resetMandel(w, h);
-            computeMandelbrot();
-        })
-
-        function load(element, width, height) {
-            // initLogger();
-            if (element) {
-                resetPresetStyles();
-                element.className = "selected";
-            }
-            initMandel("canvas", w, h);
-            // resetMandel(w, h);
-            computeMandelbrot();
-        }
+        // function load(element, width, height) {
+        //     // initLogger();
+        //     if (element) {
+        //         resetPresetStyles();
+        //         element.className = "selected";
+        //     }
+        //     initMandel("canvas", w, h);
+        //     // resetMandel(w, h);
+        //     computeMandelbrot();
+        // }
     </script>
     <!-- <script src="utils.js"></script> -->
 
