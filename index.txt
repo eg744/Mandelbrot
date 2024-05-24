@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandelbrot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="canvas.js"></script>
+    <script type="module" src="./modules/utils.js"></script>
+    <script type="module">
+
+        // function aboutHide() {
+        //     let divAbout = document.getElementById("about");
+        //     divAbout.style.display = "none";
+        // }
+
+        // function aboutShow() {
+        //     let divAbout = document.getElementById("about");
+        //     if (divAbout.style.display === "block") {
+        //         aboutHide();
+        //     } else {
+        //         divAbout.style.display = "block";
+        //     }
+        // }
+
+        // function resetPresetStyles() {
+        //     for (let i = 0; i < 8; i++) {
+        //         document.getElementById("preset_" + i).className = "";
+        //     }
+        // }
+        ////////////////////
+        // import {
+        //     initMandelbrot
+        // } from './modules/script.js'
+        // window.addEventListener('load', (e) => {
+        //     if (e) {
+        //         // resetPresetStyles();
+        //         e.className = "selected";
+        //     }
+        //     initMandelbrot("canvas", width, height);
+        //     // resetMandel(w, h);
+        //     computeMandelbrot();
+        // })
+
+        // function load(element, width, height) {
+        //     // initLogger();
+        //     if (element) {
+        //         resetPresetStyles();
+        //         element.className = "selected";
+        //     }
+        //     initMandel("canvas", w, h);
+        //     // resetMandel(w, h);
+        //     computeMandelbrot();
+        // }
+    </script>
+    <!-- <script src="utils.js"></script> -->
+
+
+
+    <canvas id="canvasElement"></canvas>
+</body>
+
+</html>
