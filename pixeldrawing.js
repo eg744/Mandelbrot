@@ -2,12 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	const canvas = document.getElementById('canvasElement');
 	const ctx = canvas.getContext('2d');
 
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
 	let width = canvas.width;
 	let height = canvas.height;
 
 	let imageData = ctx.createImageData(width, height);
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
 
 	// Pan and zoom
 	let offsetX = -width / 2;
@@ -19,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let palette = [];
 
-	const maxIterations = 250;
+	// const maxIterations = 250;
+	const maxIterations = 500;
 
 	function initalize() {
 		canvas.addEventListener('mousedown', onMouseDown);
@@ -121,7 +123,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function onMouseDown(event) {
-		let position = getMousePosition;
+		let position = getMousePosition(canvas, event);
+
+		// Zoom out with Control
+		let zoomIn = true;
+		if (event.ctrlKey) {
+			zoomIn = false;
+		}
+
+		// Pan with Shift
+		let zoomFactor = 2;
+		if (event.shiftkey) {
+			zoomFactor = 1;
+		}
+
+		zoomImage(position.x, position.y, zoomFactor, zoomIn);
+
+		createImage();
 	}
 
 	function getMousePosition(canvas, event) {
@@ -137,5 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			),
 		};
 	}
+
 	initalize();
 });
