@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	const canvas = document.getElementById('canvasElement');
 	const ctx = canvas.getContext('2d');
 
+	const resetButton = document.getElementById('resetbutton');
+	resetButton.addEventListener('click', resetFractal);
+
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
@@ -154,6 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
 					canvas.height
 			),
 		};
+	}
+
+	function resetFractal() {
+		panX = -100;
+		panY = 0;
+		zoom = 150;
+		initalize();
 	}
 
 	initalize();
