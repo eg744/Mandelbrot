@@ -2,17 +2,23 @@
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#resetbutton {
-}
-
 body {
 	margin: 0px;
 	padding: 0px;
-	font-size: 10em;
+	/* font-size: 10em; */
 	color: #999;
 	background-color: #222;
+	overflow: hidden;
 }
 
+.resolutions {
+	display: none;
+}
+
+#resetbutton {
+	border-radius: 10%;
+	text-decoration: none;
+}
 header {
 	padding: 0 4px;
 }

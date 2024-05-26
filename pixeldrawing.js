@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	// const maxIterations = 250;
 	const maxIterations = 500;
 
+	const resolutionButton240 = document.getElementById('resolutionButton240');
+	resolutionButton240.addEventListener('click', changeResolution(240, 240));
+
+	const resolutionButton480 = document.getElementById('resolutionButton480');
+	resolutionButton480.addEventListener('click', changeResolution(480, 480));
+
 	function initalize() {
 		canvas.addEventListener('mousedown', onMouseDown);
 
@@ -164,6 +170,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		panY = 0;
 		zoom = 150;
 		initalize();
+	}
+
+	function changeResolution(x, y) {
+		// canvas.width = window.innerWidth;
+		// canvas.height = window.innerHeight;
+		// canvas.width = x;
+		// canvas.height = y;
+
+		// width = canvas.width;
+		// height = canvas.height;
+		resetFractal();
 	}
 
 	initalize();
