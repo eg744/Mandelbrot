@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	const resetButton = document.getElementById('resetbutton');
 	resetButton.addEventListener('click', resetFractal);
 
+	const iterationButton250 = document.getElementById('250iteration');
+	iterationButton250.addEventListener('click', changeIteration250);
+
+	const iterationButton500 = document.getElementById('500iteration');
+	iterationButton500.addEventListener('click', changeIteration500);
+
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 
@@ -23,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let palette = [];
 
-	// const maxIterations = 250;
-	const maxIterations = 500;
+	let maxIterations = 250;
+	// const maxIterations = 500;
 
 	const resolutionButton240 = document.getElementById('resolutionButton240');
 	resolutionButton240.addEventListener('click', changeResolution(240, 240));
@@ -180,6 +186,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// width = canvas.width;
 		// height = canvas.height;
+		resetFractal();
+	}
+
+	function changeIteration250() {
+		maxIterations = 250;
+		resetFractal();
+	}
+
+	function changeIteration500() {
+		maxIterations = 500;
 		resetFractal();
 	}
 
